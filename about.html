@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saurav.Dev | About Me - Web Developer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #e9e8e6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Navigation Bar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        background-color: #e9e8e6;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 1rem 5%;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #34b7a7, #2a9d8f);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+      }
+
+      .nav-links li {
+        list-style: none;
+        position: relative;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #515050;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #34b7a7;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #34b7a7;
+        bottom: -5px;
+        left: 0;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* === ACTIVE MENU ITEM === */
+      .nav-links a.active {
+        color: #34b7a7;
+      }
+
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-icons a {
+        color: #515050;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #34b7a7;
+        transform: translateY(-3px);
+      }
+
+      /* Main Content */
+      .content {
+        margin-top: 100px;
+        padding: 2rem 5%;
+      }
+
+      /* About Section */
+      .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .about-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2a9d8f;
+        margin-bottom: 1rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .about-title::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #34b7a7, #2a9d8f);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .about-description {
+        font-size: 1.1rem;
+        color: #555;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 3rem;
+      }
+
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        align-items: center;
+        margin-bottom: 4rem;
+      }
+
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        text-align: center;
+      }
+
+      .about-image img {
+        max-width: 80%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .about-image img:hover {
+        transform: scale(1.02);
+      }
+
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .about-text h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      .about-text p {
+        margin-bottom: 1.5rem;
+        color: #555;
+        font-size: 1.05rem;
+      }
+
+      .highlight {
+        color: #2a9d8f;
+        font-weight: 600;
+      }
+
+      .personal-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .info-column {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .info-item {
+        margin-bottom: 1rem;
+        display: flex;
+      }
+
+      .info-label {
+        font-weight: 600;
+        min-width: 100px;
+        color: #333;
+      }
+
+      .info-value {
+        color: #555;
+      }
+
+      /* Skills Section */
+      .skills-section {
+        margin-top: 4rem;
+      }
+
+      .skills-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .skill-category {
+        background: #fff;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        flex: 1;
+        min-width: 250px;
+        max-width: 350px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .skill-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-category h3 {
+        color: #2a9d8f;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .skill-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #e9f8f6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: #2a9d8f;
+        font-size: 1.2rem;
+      }
+
+      .skill-name {
+        flex: 1;
+        font-weight: 500;
+      }
+
+      .skill-level {
+        width: 100%;
+        height: 8px;
+        background: #e9e8e6;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #34b7a7, #2a9d8f);
+        border-radius: 4px;
+      }
+
+      /* footer */
+      .footer {
+        margin: 30px;
+        text-align: center;
+        padding: 2rem 0;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .footer p {
+        margin-bottom: 1rem;
+        color: #555;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #515050;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle:hover {
+        color: #34b7a7;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 80%;
+          height: calc(100vh - 80px);
+          background: white;
+          flex-direction: column;
+          align-items: center;
+          padding: 3rem 0;
+          transition: left 0.4s ease;
+          box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .nav-links li {
+          margin: 1rem 0;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .about-image,
+        .about-text {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .about-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="logo">Saurav.Dev</div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" class="active">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+
+    <div class="content">
+      <div class="about-container">
+        <h1 class="about-title">About Me</h1>
+        <p class="about-description">
+          Passionate web developer with expertise in creating modern,
+          responsive, and user-friendly websites
+        </p>
+
+        <div class="about-content">
+          <div class="about-image">
+            <img src="asset/img/PHOTOS.jpeg" alt="Saurav Bhilare" />
+          </div>
+          <div class="about-text">
+            <h2>Web Developer</h2>
+            <div class="personal-info">
+              <div class="info-column">
+                <div class="info-item">
+                  <span class="info-label">Birthday:</span>
+                  <span class="info-value">04 Mrch 2000</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Age:</span>
+                  <span class="info-value">25</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Website:</span>
+                  <span class="info-value">-</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Degree:</span>
+                  <span class="info-value">B-Tech</span>
+                </div>
+              </div>
+              <div class="info-column">
+                <div class="info-item">
+                  <span class="info-label">Phone:</span>
+                  <span class="info-value">+91 9834873769</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Email:</span>
+                  <span class="info-value">sauravbhilare43@gmail.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">City:</span>
+                  <span class="info-value">Mumbai, India</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Freelance:</span>
+                  <span class="info-value">Available</span>
+                </div>
+              </div>
+            </div>
+
+            <p>
+              I'm a
+              <span class="highlight"
+                >passionate and detail-oriented web developer</span
+              >
+              with over 1+ year of hands-on experience in building responsive
+              and user-friendly websites. I specialize in
+              <span class="highlight">HTML, CSS, JavaScript, C#, and .NET</span
+              >. During my time at Masys Tech Solution Pvt. Ltd., I worked as a
+              Junior Developer and Intern, where I contributed to both front-end
+              and back-end development of real-world applications.
+            </p>
+            <p>
+              Currently, I'm upskilling in the
+              <span class="highlight">MERN stack</span>
+              (MongoDB, Express.js, React.js, Node.js) to expand my full-stack
+              development capabilities. I enjoy learning new technologies,
+              writing clean code, and collaborating with teams to build scalable
+              web solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h2 class="skills-title">My Skills</h2>
+          <div class="skills-container">
+            <div class="skill-category">
+              <h3>Frontend Development</h3>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                <div class="skill-name">HTML5</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                <div class="skill-name">CSS3</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-js"></i></div>
+                <div class="skill-name">JavaScript</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 40%"></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                <div class="skill-name">React.js</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 30%"></div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>Backend Development</h3>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <div class="skill-name">SQL</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 40%"></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-microsoft"></i></div>
+                <div class="skill-name">.NET</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>Programming</h3>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <div class="skill-name">C#</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 30%"></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                <div class="skill-name">Git</div>
+              </div>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© Copyright Saurav Bhilare | All Rights Reserved</p>
+      <div class="social-icons" style="justify-content: center">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p style="margin-top: 10px">
+        Designed & Developed by
+        <strong style="color: #2a9d8f">Saurav.Dev</strong>
+      </p>
+    </div>
+
+    <script>
+      // Mobile menu toggle functionality
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.innerHTML = navLinks.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Improved skill bar animation
+      function animateSkillBars() {
+        const skillBars = document.querySelectorAll(".skill-progress");
+
+        // First, reset all bars to 0 width
+        skillBars.forEach((bar) => {
+          // Store original width in a data attribute if not already stored
+          if (!bar.dataset.originalWidth) {
+            bar.dataset.originalWidth = bar.style.width;
+          }
+          bar.style.width = "0";
+          bar.style.transition = "none"; // Disable transition for instant reset
+        });
+
+        // Force a reflow before starting animation
+        void skillBars[0]?.offsetHeight;
+
+        // Now animate them
+        skillBars.forEach((bar) => {
+          bar.style.transition = "width 1.5s ease-in-out";
+          bar.style.width = bar.dataset.originalWidth;
+        });
+      }
+
+      // Run animation on both load and DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(animateSkillBars, 300); // Small delay to ensure everything is ready
+      });
+
+      window.addEventListener("load", animateSkillBars);
+
+      // Intersection Observer as fallback
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateSkillBars();
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      const skillsSection = document.querySelector(".skills-section");
+      if (skillsSection) {
+        observer.observe(skillsSection);
+      }
+    </script>
+  </body>
+</html>

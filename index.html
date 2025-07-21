@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saurav.Dev | Web Developer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #e9e8e6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Navigation Bar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        background-color: #e9e8e6;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 1rem 5%;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #34b7a7, #2a9d8f);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+      }
+
+      .nav-links li {
+        list-style: none;
+        position: relative;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #515050;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #34b7a7;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #34b7a7;
+        bottom: -5px;
+        left: 0;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* === ACTIVE MENU ITEM === */
+      .nav-links a.active {
+        color: #34b7a7;
+      }
+
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-icons a {
+        color: #515050;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #34b7a7;
+        transform: translateY(-3px);
+      }
+
+      /* Hero Section */
+      .content {
+        padding-top: 100px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: url("asset/img/bgdev.jpg") no-repeat center center/cover;
+      }
+
+      .hero-container {
+        max-width: 800px;
+        padding: 2rem;
+      }
+
+      .name {
+        font-size: 3.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        line-height: 1.2;
+      }
+
+      .description {
+        font-size: 1.3rem;
+        color: #c1c1c1;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
+      }
+
+      .btn-abt {
+        background-color: #34b7a7;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(52, 183, 167, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn-abt:hover {
+        background-color: #2a9d8f;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(52, 183, 167, 0.4);
+      }
+
+      /* footer */
+      .footer {
+        margin: 30px;
+        text-align: center;
+        padding: 2rem 0;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .footer p {
+        margin-bottom: 1rem;
+        color: #555;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #515050;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle:hover {
+        color: #34b7a7;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 80%;
+          height: calc(100vh - 80px);
+          background: white;
+          flex-direction: column;
+          align-items: center;
+          padding: 3rem 0;
+          transition: left 0.4s ease;
+          box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .nav-links li {
+          margin: 1rem 0;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .name {
+          font-size: 2.5rem;
+        }
+
+        .description {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .name {
+          font-size: 2rem;
+        }
+
+        .description {
+          font-size: 1rem;
+        }
+
+        .btn-abt {
+          padding: 10px 25px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="logo">Saurav.Dev</div>
+
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+
+    <div class="content">
+      <div class="hero-container">
+        <h1 class="name">Saurav Bhilare</h1>
+        <p class="description">Web Developer from Mumbai</p>
+        <button class="btn-abt" onclick="window.location.href = 'about.html';">
+          About Me
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© Copyright Saurav Bhilare | All Rights Reserved</p>
+      <div class="social-icons" style="justify-content: center">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p style="margin-top: 10px">
+        Designed & Developed by
+        <strong style="color: #2a9d8f">Saurav.Dev</strong>
+      </p>
+    </div>
+
+    <script>
+      // Mobile menu toggle functionality
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.innerHTML = navLinks.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
